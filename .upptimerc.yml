@@ -2,8 +2,21 @@ owner: Keshiwei
 repo: web_check
 
 sites:
+  - name: 广菲
+    url: https://www.fairland.com.cn/
   - name: 夸克
     url: https://www.aquark.com/
+  - name: 安捷
+    url: https://www.aquagem.com/
+  - name: Group
+    url: https://www.fairlandgroup.com/
+  - name: 内销
+    url: https://www.fairlandgroup.com.cn/
+  - name: 法分
+    url: https://igardenfrance.fr/
+  - name: iGarden
+    url: https://www.igarden.ai/
+    
 
 status-website:
   baseUrl: /web_check
