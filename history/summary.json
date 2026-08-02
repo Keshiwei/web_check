@@ -94,9 +94,9 @@
     "url": "https://igardenfrance.fr/",
     "icon": "https://icons.duckduckgo.com/ip3/igardenfrance.fr.ico",
     "slug": "法分",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
@@ -105,7 +105,9 @@
     "timeWeek": 1193,
     "timeMonth": 1193,
     "timeYear": 1193,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-08-02": 0
+    }
   },
   {
     "name": "iGarden",
