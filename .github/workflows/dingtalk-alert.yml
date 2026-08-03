@@ -1,0 +1,83 @@
+name: DingTalk Incident Alerts
+
+on:
+  issues:
+    types:
+      - opened
+      - closed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  notify:
+    name: Send DingTalk notification
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'status')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build and send message
+        shell: bash
+        env:
+          DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+          EVENT_NAME: ${{ github.event_name }}
+          ISSUE_ACTION: ${{ github.event.action }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          STATUS_PAGE_URL: https://keshiwei.github.io/web_check/
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DINGTALK_WEBHOOK_URL:-}" ]; then
+            echo "::error::Repository secret DINGTALK_WEBHOOK_URL is missing"
+            exit 1
+          fi
+
+          timestamp="$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')"
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            content="$(printf '🔔【网站监控测试】\n\n钉钉告警通道连接成功。\n仓库：%s\n北京时间：%s\n状态页：%s' \
+              "$REPOSITORY" "$timestamp" "$STATUS_PAGE_URL")"
+          elif [ "$ISSUE_ACTION" = "opened" ]; then
+            content="$(printf '🚨【网站监控告警】\n\n%s\n北京时间：%s\n故障详情：%s\n状态页：%s' \
+              "$ISSUE_TITLE" "$timestamp" "$ISSUE_URL" "$STATUS_PAGE_URL")"
+          elif [ "$ISSUE_ACTION" = "closed" ]; then
+            content="$(printf '✅【网站监控恢复】\n\n%s\n北京时间：%s\n故障记录：%s\n状态页：%s' \
+              "$ISSUE_TITLE" "$timestamp" "$ISSUE_URL" "$STATUS_PAGE_URL")"
+          else
+            echo "No supported event to notify."
+            exit 0
+          fi
+
+          payload="$(jq -n \
+            --arg content "$content" \
+            '{
+              msgtype: "text",
+              text: {
+                content: $content
+              },
+              at: {
+                isAtAll: false
+              }
+            }')"
+
+          response="$(curl \
+            --silent \
+            --show-error \
+            --fail-with-body \
+            --request POST \
+            --header 'Content-Type: application/json' \
+            --data "$payload" \
+            "$DINGTALK_WEBHOOK_URL")"
+
+          errcode="$(printf '%s' "$response" | jq -r '.errcode // -1')"
+
+          if [ "$errcode" != "0" ]; then
+            echo "::error::DingTalk rejected the notification: $response"
+            exit 1
+          fi
+
+          echo "DingTalk notification sent successfully."
