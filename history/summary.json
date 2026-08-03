@@ -94,20 +94,20 @@
     "url": "https://igardenfrance.fr/",
     "icon": "https://icons.duckduckgo.com/ip3/igardenfrance.fr.ico",
     "slug": "法分",
-    "status": "down",
-    "uptime": "93.80%",
-    "uptimeDay": "89.56%",
-    "uptimeWeek": "93.80%",
-    "uptimeMonth": "93.80%",
-    "uptimeYear": "93.80%",
-    "time": 1156,
-    "timeDay": 1338,
-    "timeWeek": 1156,
-    "timeMonth": 1156,
-    "timeYear": 1156,
+    "status": "up",
+    "uptime": "93.01%",
+    "uptimeDay": "85.44%",
+    "uptimeWeek": "93.01%",
+    "uptimeMonth": "93.01%",
+    "uptimeYear": "93.01%",
+    "time": 1131,
+    "timeDay": 1227,
+    "timeWeek": 1131,
+    "timeMonth": 1131,
+    "timeYear": 1131,
     "dailyMinutesDown": {
       "2026-08-02": 281,
-      "2026-08-03": 150
+      "2026-08-03": 209
     }
   },
   {
