@@ -1,6 +1,8 @@
 owner: Keshiwei
 repo: web_check
 
+skipDeleteIssues: true
+
 sites:
   - name: 广菲
     url: https://www.fairland.com.cn/
