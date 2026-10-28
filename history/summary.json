@@ -94,17 +94,19 @@
     "url": "https://www.igarden.ai/",
     "icon": "https://icons.duckduckgo.com/ip3/www.igarden.ai.ico",
     "slug": "i-garden",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 848,
-    "timeDay": 703,
-    "timeWeek": 955,
-    "timeMonth": 921,
-    "timeYear": 848,
-    "dailyMinutesDown": {}
+    "time": 884,
+    "timeDay": 2492,
+    "timeWeek": 1370,
+    "timeMonth": 1029,
+    "timeYear": 884,
+    "dailyMinutesDown": {
+      "2026-10-28": 0
+    }
   }
 ]
