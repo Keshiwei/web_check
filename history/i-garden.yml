@@ -1,7 +1,7 @@
 url: https://www.igarden.ai/
-status: up
-code: 200
-responseTime: 703
-lastUpdated: 2026-10-28T02:01:11.177Z
+status: down
+code: 504
+responseTime: 4280
+lastUpdated: 2026-10-28T21:09:25.965Z
 startTime: 2026-07-30T02:56:40.927Z
 generator: Upptime <https://github.com/upptime/upptime>
